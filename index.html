@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Khoirul Sofyan</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Floating Shapes */
+    .floating-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.3;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    .shape1 {
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(135deg, #0ea5e9, #3b82f6);
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .shape2 {
+      width: 250px;
+      height: 250px;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      bottom: 20%;
+      right: 15%;
+      animation-delay: 5s;
+    }
+
+    .shape3 {
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(135deg, #10b981, #3b82f6);
+      top: 50%;
+      right: 20%;
+      animation-delay: 10s;
+    }
+
+    /* ID Card Section */
+    .id-card-section {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .id-container {
+      perspective: 1000px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lanyard {
+      width: 24px;
+      height: 170px;
+      background: linear-gradient(
+        90deg,
+        #0047ab 0%, #0059d1 15%, #006ef5 30%, #1e88ff 45%,
+        #4da3ff 50%, #1e88ff 55%, #006ef5 70%, #0059d1 85%, #0047ab 100%
+      );
+      position: relative;
+      box-shadow:
+        inset -4px 0 10px rgba(0, 35, 100, 0.7),
+        inset 4px 0 10px rgba(135, 206, 250, 0.5),
+        5px 0 15px rgba(0, 0, 0, 0.5);
+      transform-origin: top center;
+      border-radius: 4px;
+      border-left: 1px solid rgba(0, 35, 100, 0.6);
+      border-right: 1px solid rgba(135, 206, 250, 0.4);
+      transition: height 0.3s ease, transform 0.3s ease;
+      /* Add subtle texture for realism */
+      background-image: linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.05) 25%,
+          transparent 25%,
+          transparent 50%,
+          rgba(255, 255, 255, 0.05) 50%,
+          rgba(255, 255, 255, 0.05) 75%,
+          transparent 75%,
+          transparent
+        ),
+        linear-gradient(
+          -45deg,
+          rgba(255, 255, 255, 0.05) 25%,
+          transparent 25%,
+          transparent 50%,
+          rgba(255, 255, 255, 0.05) 50%,
+          rgba(255, 255, 255, 0.05) 75%,
+          transparent 75%,
+          transparent
+        );
+      background-size: 4px 4px;
+    }
+
+    .lanyard::before {
+      content: 'Khoirul Sofyan';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(90deg);
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .clip {
+      width: 38px;
+      height: 52px;
+      background: linear-gradient(
+        145deg,
+        #4a4a4a 0%,
+        #3a3a3a 30%,
+        #2a2a2a 50%,
+        #1a1a1a 70%,
+        #0a0a0a 100%
+      );
+      border-radius: 5px;
+      position: absolute;
+      top: -26px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.7),
+        inset 0 2px 5px rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(0, 0, 0, 0.9);
+      /* Add metallic texture */
+      background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.1) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.1) 75%,
+        transparent 75%,
+        transparent
+      );
+      background-size: 6px 6px;
+    }
+
+    .lanyard-connector {
+      position: absolute;
+      bottom: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 22px;
+      background: linear-gradient(
+        145deg,
+        #e0e0e0 0%,
+        #c0c0c0 30%,
+        #a0a0a0 50%,
+        #808080 70%,
+        #606060 100%
+      );
+      border-radius: 5px;
+      box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.6),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+      /* Add subtle wear for realism */
+      background-image: radial-gradient(
+        circle at 30% 30%,
+        rgba(0, 0, 0, 0.1) 2%,
+        transparent 4%
+      );
+    }
+
+    .id-card-wrapper {
+      transform-origin: top center;
+      margin-top: 16px;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .id-card-wrapper:active {
+      cursor: grabbing;
+    }
+
+    .id-card {
+      width: 305px;
+      background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #f8f9fa 50%,
+        #e9ecef 100%
+      );
+      border-radius: 14px;
+      box-shadow:
+        0 35px 90px rgba(0, 0, 0, 0.65),
+        0 20px 50px rgba(0, 0, 0, 0.45),
+        0 8px 20px rgba(0, 0, 0, 0.35),
+        inset 0 2px 5px rgba(255, 255, 255, 0.8);
+      overflow: hidden;
+      border: 5px solid #023e8a;
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+      position: relative;
+      /* Add plastic-like texture */
+      background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.05) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.05) 75%,
+        transparent 75%,
+        transparent
+      );
+      background-size: 3px 3px;
+    }
+
+    .id-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.5),
+        transparent
+      );
+      transition: left 0.6s ease;
+      z-index: 100;
+      pointer-events: none;
+      transform: translateZ(50px);
+    }
+
+    .id-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        linear-gradient(
+          45deg,
+          transparent 30%,
+          rgba(255, 255, 255, 0.2) 50%,
+          transparent 70%
+        ),
+        linear-gradient(
+          135deg,
+          transparent 30%,
+          rgba(14, 165, 233, 0.2) 50%,
+          transparent 70%
+        ),
+        radial-gradient(
+          circle at 20% 30%,
+          rgba(59, 130, 246, 0.15),
+          transparent 40%
+        ),
+        radial-gradient(
+          circle at 80% 70%,
+          rgba(14, 165, 233, 0.15),
+          transparent 40%
+        );
+      background-size: 200% 200%;
+      animation: shimmer 2.5s infinite linear;
+      z-index: 99;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 200%; }
+      100% { background-position: -200% -200%; }
+    }
+
+    .id-card:hover::before {
+      left: 100%;
+    }
+
+    .card-holes {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 80px;
+      z-index: 10;
+    }
+
+    .hole {
+      width: 12px;
+      height: 12px;
+      background: radial-gradient(
+        circle at 30% 30%,
+        #1a3a5a 0%,
+        #023e8a 50%,
+        #000814 100%
+      );
+      border-radius: 50%;
+      box-shadow:
+        inset 0 3px 6px rgba(0, 0, 0, 0.9),
+        0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-header {
+      background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
+      padding: 35px 20px 25px;
+      position: relative;
+    }
+
+    .photo-section {
+      display: flex;
+      justify-content: center;
+      background: white;
+      margin-top: -40px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .photo-frame {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0077b6, #00b4d8);
+      padding: 4px;
+      box-shadow:
+        0 12px 35px rgba(0, 119, 182, 0.6),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    }
+
+    .photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 3px solid white;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .info-section {
+      padding: 20px 20px 25px;
+      background: white;
+      text-align: center;
+    }
+
+    .role {
+      font-size: 0.75rem;
+      color: #0077b6;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .info-item {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .info-label {
+      font-size: 0.65rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .info-value {
+      font-size: 0.85rem;
+      color: #333;
+      font-weight: 600;
+      padding: 8px 12px;
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      border-radius: 6px;
+      border-left: 3px solid #0077b6;
+    }
+
+    .barcode-section {
+      padding: 15px 20px;
+      background: white;
+      text-align: center;
+    }
+
+    .barcode {
+      height: 35px;
+      background: linear-gradient(
+        90deg,
+        #333 0%, #333 6%, transparent 6%, transparent 9%,
+        #333 9%, #333 11%, transparent 11%, transparent 14%,
+        #333 14%, #333 18%, transparent 18%, transparent 22%,
+        #333 22%, #333 24%, transparent 24%, transparent 27%,
+        #333 27%, #333 33%, transparent 33%, transparent 37%,
+        #333 37%, #333 40%, transparent 40%, transparent 44%,
+        #333 44%, #333 50%, transparent 50%, transparent 54%,
+        #333 54%, #333 57%, transparent 57%, transparent 62%,
+        #333 62%, #333 68%, transparent 68%, transparent 72%,
+        #333 72%, #333 76%, transparent 76%, transparent 81%,
+        #333 81%, #333 87%, transparent 87%, transparent 91%,
+        #333 91%, #333 94%, transparent 94%, transparent 100%
+      );
+      border-radius: 3px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-footer {
+      background: #023e8a;
+      padding: 8px 15px;
+      text-align: center;
+    }
+
+    .card-footer p {
+      font-size: 0.6rem;
+      color: white;
+      font-weight: 500;
+    }
+
+    /* Portfolio Section */
+    .portfolio-section {
+      padding: 80px 20px 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .portfolio-item {
+      position: relative;
+      background: rgba(30, 41, 59, 0.5); /* Semi-transparent */
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      padding: 25px;
+      border: 1px solid rgba(148, 163, 184, 0.1);
+      backdrop-filter: blur(10px);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 30px 60px rgba(14, 165, 233, 0.3);
+    }
+
+    .item-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #0ea5e9, #3b82f6, #8b5cf6);
+      background-clip: text; /* ✅ versi standar */
+      -webkit-background-clip: text; /* ✅ untuk Chrome & Safari */
+      -webkit-text-fill-color: transparent;
+      color: transparent; /* opsional, tambahan untuk Firefox */
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+
+    .item-description {
+      font-size: 1rem;
+      color: #f1f5f9;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+
+    .item-image {
+      width: 100%;
+      max-height: 1500px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .portfolio-item.visible .item-image {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .item-images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .item-images img {
+      width: 30%;
+      min-width: 200px;
+      border-radius: 10px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .portfolio-item.visible .item-images img {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .item-images img:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+
+    .item-images img:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+
+    .item-images img:nth-child(3) {
+      transition-delay: 0.3s;
+    }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .contact-list li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      color: #f1f5f9;
+      font-size: 1rem;
+    }
+
+    .contact-list li::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .contact-phone::before {
+      background-image: url('https://img.icons8.com/ios-filled/50/ffffff/phone.png');
+    }
+
+    .contact-email::before {
+      background-image: url('https://img.icons8.com/ios-filled/50/ffffff/email.png');
+    }
+
+    .contact-instagram::before {
+      background-image: url('https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png');
+    }
+
+    .thank-you {
+      text-align: center;
+      font-size: 1.5rem;
+      color: #f1f5f9;
+      margin-top: 20px;
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(50px, -50px) scale(1.1); }
+      50% { transform: translate(-30px, -80px) scale(0.9); }
+      75% { transform: translate(-60px, -30px) scale(1.05); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .item-images img {
+        width: 45%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .portfolio-item {
+        padding: 20px;
+      }
+
+      .item-title {
+        font-size: 2rem;
+      }
+
+      .item-description {
+        font-size: 0.95rem;
+      }
+
+      .item-images {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .item-images img {
+        width: 100%;
+      }
+
+      .id-card {
+        width: 270px;
+      }
+
+      .photo-frame {
+        width: 100px;
+        height: 100px;
+      }
+
+      .lanyard {
+        height: 130px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .item-title {
+        font-size: 1.8rem;
+      }
+
+      .item-description {
+        font-size: 0.9rem;
+      }
+
+      .id-card {
+        width: 240px;
+      }
+
+      .photo-frame {
+        width: 90px;
+        height: 90px;
+      }
+
+      .lanyard {
+        height: 110px;
+        width: 20px;
+      }
+
+      .card-holes {
+        gap: 60px;
+      }
+
+      .info-value {
+        font-size: 0.8rem;
+        padding: 7px 10px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .id-card {
+        width: 220px;
+      }
+
+      .photo-frame {
+        width: 85px;
+        height: 85px;
+      }
+
+      .lanyard {
+        height: 100px;
+        width: 18px;
+      }
+
+      .card-holes {
+        gap: 55px;
+      }
+
+      .info-value {
+        font-size: 0.75rem;
+        padding: 6px 8px;
+      }
+
+      .barcode {
+        height: 30px;
+      }
+    }
+
+    @media (max-width: 320px) {
+      .id-card {
+        width: 200px;
+      }
+
+      .photo-frame {
+        width: 75px;
+        height: 75px;
+      }
+
+      .lanyard {
+        height: 90px;
+        width: 16px;
+      }
+
+      .card-holes {
+        gap: 50px;
+      }
+
+      .role {
+        font-size: 0.7rem;
+      }
+
+      .info-label {
+        font-size: 0.6rem;
+      }
+
+      .info-value {
+        font-size: 0.7rem;
+        padding: 5px 7px;
+      }
+
+      .barcode {
+        height: 28px;
+      }
+
+      .card-footer p {
+        font-size: 0.55rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-shapes">
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+  </div>
+
+  <!-- ID Card Section -->
+  <section class="id-card-section" id="idCard">
+    <div class="id-container">
+      <div class="lanyard">
+        <div class="clip"></div>
+        <div class="lanyard-connector"></div>
+      </div>
+      
+      <div class="id-card-wrapper" id="cardWrapper">
+        <div class="id-card" id="card">
+          <div class="card-holes">
+            <div class="hole"></div>
+            <div class="hole"></div>
+          </div>
+
+          <div class="card-header"></div>
+
+          <div class="photo-section">
+            <div class="photo-frame">
+              <div class="photo">
+                <img src="Khoirul Sofyan.jpg" alt="Foto Khoirul Sofyan">
+              </div>
+            </div>
+          </div>
+
+          <div class="info-section">
+            <div class="role">Teknik Informatika</div>
+
+            <div class="info-item">
+              <div class="info-label">Nama Lengkap</div>
+              <div class="info-value">Khoirul Sofyan</div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-label">Universitas</div>
+              <div class="info-value">Universitas Pamulang</div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-label">Program Studi</div>
+              <div class="info-value">S1 Teknik Informatika</div>
+            </div>
+          </div>
+
+          <div class="barcode-section">
+            <div class="barcode"></div>
+          </div>
+
+          <div class="card-footer">
+            <p>© 2025-2026</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section class="portfolio-section" id="portfolio">
+    <div class="container">
+
+      <!-- Title Section -->
+      <div class="portfolio-item" id="title-section">
+        <h1 class="item-title">PORTOFOLIO</h1>
+      </div>
+
+      <!-- Tentang Saya -->
+      <div class="portfolio-item" id="about-section">
+        <h3 class="item-title">TENTANG SAYA</h3>
+        <p class="item-description">Lulusan S1 Teknik Informatika Universitas Pamulang (IPK 3.32) dengan minat di bidang desain grafis serta pengembangan web dan sistem informasi. Menguasai berbagai tools dan software seperti Figma, Microsoft Word, Microsoft Excel, desain grafis (Canva, Photoshop dasar), serta editing video (CapCut, Filmora, atau software sejenis). Memiliki kemampuan bahasa pemrograman seperti PHP, HTML, dan CSS, serta soft skill meliputi problem solving, teamwork, komunikasi, dan manajemen waktu. Berpengalaman sebagai Anggota KPPS (Kelompok Penyelenggara Pemungutan Suara) di KPU TPS 005 Ciseeng, Bogor pada Februari 2024 dengan tugas meliputi pemungutan dan penghitungan suara Pemilu 2024 di tingkat TPS, melayani warga sesuai prosedur, melakukan pencatatan, verifikasi, rekapitulasi suara, serta menjaga integritas, netralitas, dan profesionalisme selama proses berlangsung. Siap bekerja secara individu maupun dalam tim.</p>
+         <img class="item-image" src="Tentang Saya.jpg" alt="Organization Photo">
+      </div>
+
+      <!-- Pendidikan -->
+     <div class="portfolio-item" id="education-section">
+  <h3 class="item-title">PENDIDIKAN</h3>
+  <p class="item-description">
+    S1 - Teknik Informatika Universitas Pamulang Pada 18 Juli 2025 Dengan IPK 3.32
+  </p>
+ <img class="item-image" src="Sidang Skripsi1.jpg" alt="Organization Photo">
+</div>
+
+
+      <!-- Pengalaman Organisasi -->
+      <div class="portfolio-item" id="org-experience-section">
+        <h3 class="item-title">PENGALAMAN ORGANISASI</h3>
+        <p class="item-description"><b>Nama Kegiatan:</b> Pengabdian Kepada Masyarakat (PKM) <br>
+        <b>Instansi:</b> Universitas Pamulang <br>
+        <b>Peran:</b> Tim Dokumentasi & Editing Video <br>
+        <b>Periode:</b> Tahun 2024 <br><br>
+
+        Dalam kegiatan <b>Pengabdian Kepada Masyarakat (PKM)</b> di Universitas Pamulang, 
+        saya berperan sebagai anggota tim dokumentasi dan editing video yang bertanggung jawab 
+        mengabadikan seluruh aktivitas acara melalui foto maupun video. 
+        <br><br>
+        Hasil dokumentasi tersebut kemudian diolah menjadi materi publikasi yang informatif 
+        dan menarik untuk kebutuhan promosi serta pelaporan kegiatan. 
+        Saya juga membantu dalam pengelolaan arsip dokumentasi agar tersimpan dengan baik 
+        serta mendukung penyusunan laporan dan presentasi tim. 
+        <br><br>
+        Pengalaman ini meningkatkan kemampuan saya dalam <b>pengambilan gambar, pengeditan video, 
+        pengelolaan konten digital,</b> serta <b>kerja sama tim</b> dalam mendukung keberhasilan program.
+      </p>
+        <img class="item-image" src="PKM.jpg" alt="Organization Photo">
+      </div>
+
+      <!-- Pengalaman Kepanitiaan -->
+      <div class="portfolio-item" id="committee-experience-section">
+        <h3 class="item-title">PENGALAMAN KEPANITIAAN</h3>
+        <p class="item-description"><b>Nama Kegiatan:</b> KPPS (Kelompok Penyelenggara Pemungutan Suara) Pemilu 2024 <br>
+        <b>Penyelenggara:</b> Komisi Pemilihan Umum (KPU) <br>
+        <b>Lokasi:</b> TPS 005 Ciseeng, Bogor <br>
+        <b>Periode:</b> Februari 2024 <br><br>
+
+        Sebagai <b>Anggota KPPS</b>, saya berperan aktif dalam pelaksanaan Pemilihan Umum (Pemilu) 2024 di tingkat 
+        <i>Tempat Pemungutan Suara (TPS)</i>. Tugas utama saya meliputi membantu proses pemungutan suara, 
+        melayani warga dalam menggunakan hak pilih sesuai prosedur, melakukan pencatatan dan verifikasi data, 
+        serta berkontribusi dalam rekapitulasi hasil suara. 
+        <br><br>
+        Selain itu, saya juga menjaga integritas, netralitas, serta profesionalisme selama kegiatan berlangsung. 
+        Pengalaman ini mengasah kemampuan saya dalam hal <b>ketelitian, tanggung jawab, kerja sama tim,</b> 
+        dan <b>komunikasi langsung dengan masyarakat.</b>
+        </p>
+        <div class="item-images">
+              <img class="item-image" src="kpps 1.jpg" alt="Organization Photo">
+              <img class="item-image" src="kpps 2.jpg" alt="Organization Photo">
+              <img class="item-image" src="kpps 3.jpg" alt="Organization Photo">  
+        </div>
+      </div>
+
+       <!-- Pengalaman Magang -->
+      <div class="portfolio-item" id="committee-experience-section">
+        <h3 class="item-title">PENGALAMAN MAGANG</h3>
+        <p class="item-description"><b>Nama Instansi:</b> PT. Tripta Karya Konsultindo <br>
+          <b>Periode:</b> 19 Maret – 19 Juni 2024 <br>
+          <b>Posisi:</b> (Anggota Tim) <br><br>
+
+          Selama melaksanakan kegiatan <b>Kerja Praktik</b> di PT. Tripta Karya Konsultindo, 
+          saya terlibat dalam proyek dengan judul 
+          <b>“Perancangan Sistem Manajemen Keuangan Berbasis Web dengan Metode RAD.”</b> 
+          Dalam proyek ini, saya berperan dalam pengembangan dan perancangan sistem web 
+          untuk membantu pengelolaan keuangan perusahaan agar lebih efisien, cepat, dan terstruktur. 
+          <br><br>
+          Kegiatan magang ini memberikan saya pengalaman langsung dalam menerapkan 
+          konsep <i>Rapid Application Development (RAD)</i>, kolaborasi tim, serta pengembangan 
+          sistem berbasis web menggunakan <b>PHP, MySQL, HTML, dan CSS</b>. 
+          Saya juga belajar memahami kebutuhan pengguna dan melakukan uji fungsionalitas sistem 
+          agar sesuai dengan spesifikasi yang diinginkan perusahaan.
+          <br><br>
+        </p>
+        <div class="item-images">
+              <img class="item-image" src="Magang 1.jpg" alt="Organization Photo">
+              <img class="item-image" src="Magang 2.jpg" alt="Organization Photo">
+              <img class="item-image" src="Magang 3.jpg" alt="Organization Photo">  
+        </div>
+      </div>
+
+      <!-- Proyek Skripsi -->
+  <div class="portfolio-item" id="skripsi-section">
+  <h3 class="item-title">PROJEK SKRIPSI</h3>
+  <p class="item-description">
+    <b>Judul:</b> Rancang Bangun Sistem Pembelajaran E-Learning Berbasis Website Menggunakan Metode Prototype (Studi Kasus: SMK Sirajul Falah Parung)
+    <br><br>
+    Proyek ini merupakan hasil penelitian skripsi yang berfokus pada pengembangan sistem e-learning berbasis website 
+    untuk mendukung proses pembelajaran di SMK Sirajul Falah Parung. Sistem dirancang menggunakan 
+    <b>metode Prototype</b> dengan melibatkan guru dan siswa dalam proses pengembangannya, 
+    sehingga sistem dapat disesuaikan langsung dengan kebutuhan pengguna.
+    <br><br>
+    Aplikasi ini mempermudah guru dalam mengelola materi, tugas, kuis, dan ujian secara terstruktur, 
+    serta memungkinkan siswa untuk mengakses materi pembelajaran kapan pun dan di mana pun. 
+    Hasil pengujian menunjukkan sistem berfungsi dengan baik menggunakan metode <i>black-box testing</i>.
+    <br><br>
+    <b>Teknologi yang digunakan:</b> PHP, MySQL, HTML, CSS, JavaScript. <br>
+     <br>
+    <b>Peran:</b> Perancang dan pengembang utama sistem.
+  </p>
+  <div class="item-images">
+    <img class="item-image" src="Login.png" alt="Organization Photo">
+    <img class="item-image" src="Dasboard Guru.png" alt="Organization Photo">
+    <img class="item-image" src="Dashboard Siswa.png" alt="Organization Photo">
+  </div>
+</div>
+
+
+      <!-- Sertifikat -->
+      <div class="portfolio-item" id="certificate-section">
+        <h3 class="item-title">SERTIFIKAT</h3>
+         <p class="item-description">Pernah meraih Juara 2 Lomba Photography FESTI 2023 yang diselenggarakan oleh HIMAPTIFIP UMJ (Universitas Muhammadiyah Jakarta), dengan tema "Use your skill, beyond the limit"..</p>
+        <img class="item-image" src="Sertifikat.jpg" alt="Organization Photo"> 
+        <!-- You can add more certificates here if needed -->
+      </div>
+
+      <!-- Kontak Saya -->
+      <div class="portfolio-item" id="contact-section">
+        <h3 class="item-title">KONTAK SAYA</h3>
+        <ul class="contact-list">
+          <li class="contact-phone">085890152956</li>
+          <li class="contact-email">hoirulsofyan@gmail.com</li>
+          <li class="contact-instagram">hrlsfyn_</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    // Interactive ID Card - Drag & Drop with Enhanced Physics
+    const cardWrapper = document.getElementById('cardWrapper');
+    const card = document.getElementById('card');
+    const lanyard = document.querySelector('.lanyard');
+
+    let isDragging = false;
+    let startY = 0;
+    let currentY = 0;
+    let velocity = 0;
+    let rotation = 0;
+    let sway = 0;
+    let animationFrame = null;
+
+    // Physics constants
+    const springStrength = 0.08;
+    const damping = 0.9;
+    const maxStretch = 180;
+    const swayStrength = 0.02;
+    const swayDamping = 0.95;
+
+    // Mouse hover effect for 3D rotation
+    cardWrapper.addEventListener('mousemove', (e) => {
+      if (isDragging) return;
+
+      const rect = cardWrapper.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateY = (x - centerX) / 12;
+      const rotateX = -(y - centerY) / 12;
+      
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    cardWrapper.addEventListener('mouseleave', () => {
+      if (!isDragging) {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+      }
+    });
+
+    // Drag functionality
+    function startDrag(e) {
+      isDragging = true;
+      startY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
+      currentY = 0;
+      velocity = 0;
+      sway = 0;
+      
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    }
+
+    function drag(e) {
+      if (!isDragging) return;
+      
+      e.preventDefault();
+      const clientY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
+      const deltaY = clientY - startY;
+      
+      currentY = Math.max(-maxStretch, Math.min(maxStretch, deltaY));
+      
+      rotation = currentY * 0.12;
+      sway += (e.type.includes('mouse') ? e.movementX : 0) * swayStrength;
+      sway *= swayDamping;
+      
+      cardWrapper.style.transform = `translateY(${currentY}px) rotate(${rotation}deg) rotateY(${sway}deg)`;
+      
+      const stretch = Math.abs(currentY) * 0.4;
+      lanyard.style.height = `${170 + stretch}px`;
+      lanyard.style.transform = `rotate(${sway * 0.5}deg)`;
+    }
+
+    function endDrag() {
+      if (!isDragging) return;
+      
+      isDragging = false;
+      velocity = currentY * 0.25;
+      
+      animate();
+    }
+
+    function animate() {
+      const force = -currentY * springStrength;
+      velocity += force;
+      velocity *= damping;
+      
+      currentY += velocity;
+      rotation = currentY * 0.12;
+      sway *= swayDamping;
+      
+      cardWrapper.style.transform = `translateY(${currentY}px) rotate(${rotation}deg) rotateY(${sway}deg)`;
+      
+      const stretch = Math.abs(currentY) * 0.4;
+      lanyard.style.height = `${170 + stretch}px`;
+      lanyard.style.transform = `rotate(${sway * 0.5}deg)`;
+      
+      if (Math.abs(velocity) > 0.05 || Math.abs(currentY) > 0.05 || Math.abs(sway) > 0.05) {
+        animationFrame = requestAnimationFrame(animate);
+      } else {
+        currentY = 0;
+        velocity = 0;
+        rotation = 0;
+        sway = 0;
+        cardWrapper.style.transform = 'translateY(0) rotate(0) rotateY(0)';
+        lanyard.style.height = '170px';
+        lanyard.style.transform = 'rotate(0)';
+      }
+    }
+
+    // Event listeners for ID card
+    cardWrapper.addEventListener('mousedown', startDrag);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', endDrag);
+
+    cardWrapper.addEventListener('touchstart', startDrag, { passive: true });
+    document.addEventListener('touchmove', drag, { passive: false });
+    document.addEventListener('touchend', endDrag);
+
+    cardWrapper.addEventListener('dragstart', (e) => e.preventDefault());
+
+    // Scroll animation for portfolio items
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    portfolioItems.forEach(item => {
+      observer.observe(item);
+    });
+
+    // Gyroscope for mobile tilt effect
+let gyroRotateX = 0;
+let gyroRotateY = 0;
+let isGyroActive = false;
+let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+// Check if device supports gyroscope (Mobile only)
+if (window.DeviceOrientationEvent && isMobile) {
+  // Request permission for iOS 13+
+  if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+    cardWrapper.addEventListener('click', () => {
+      DeviceOrientationEvent.requestPermission()
+        .then(permissionState => {
+          if (permissionState === 'granted') {
+            enableGyroscope();
+          }
+        })
+        .catch(console.error);
+    }, { once: true });
+  } else {
+    // Android and older iOS
+    enableGyroscope();
+  }
+}
+
+function enableGyroscope() {
+  window.addEventListener('deviceorientation', (e) => {
+    if (isDragging) return;
+    
+    isGyroActive = true;
+    
+    // Get device orientation
+    const beta = e.beta; // X-axis (front to back) -180 to 180
+    const gamma = e.gamma; // Y-axis (left to right) -90 to 90
+    
+    // Smooth and limit rotation values
+    gyroRotateX = Math.max(-25, Math.min(25, beta - 90)) * -0.6;
+    gyroRotateY = Math.max(-25, Math.min(25, gamma)) * 0.8;
+    
+    card.style.transform = `perspective(1000px) rotateX(${gyroRotateX}deg) rotateY(${gyroRotateY}deg)`;
+  });
+}
+
+// Mouse hover effect for 3D rotation (Desktop only)
+if (!isMobile) {
+  cardWrapper.addEventListener('mousemove', (e) => {
+    if (isDragging) return;
+
+    const rect = cardWrapper.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateY = (x - centerX) / 12;
+    const rotateX = -(y - centerY) / 12;
+    
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+
+  cardWrapper.addEventListener('mouseleave', () => {
+    if (!isDragging) {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+    }
+  });
+}
+window.addEventListener('deviceorientation', (e) => {
+  console.log('Beta:', e.beta, 'Gamma:', e.gamma);
+});
+  </script>
+</body>
+</html>
